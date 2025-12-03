@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -32,6 +33,7 @@ export default function RootLayout({
         className={`${inter.variable} ${outfit.variable} bg-secondary text-secondary antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
