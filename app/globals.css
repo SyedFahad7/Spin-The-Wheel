@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #111111;
+  font-family: var(--font-outfit), sans-serif;
+  letter-spacing: 0.05em;
+}
+
+@theme inline {
+  --font-family-outfit: var(--font-outfit), sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+@layer utilities {
+  .font-outfit {
+    font-family: var(--font-outfit), sans-serif;
+  }
+}
