@@ -1,3 +1,3 @@
-export const PRIZES = ["T-shirt", "Mug", "Sticker Sheet", "Coupon"];
+export const PRIZES = ["Coffee Mug", "Sticker Sheet", "3 Months Free Trial"];
 
 

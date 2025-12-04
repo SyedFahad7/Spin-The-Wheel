@@ -30,6 +30,7 @@ export function LeadForm({ onRecordId }: Props) {
       const id = await createLead({ name, email, company });
       if (typeof window !== "undefined") {
         sessionStorage.setItem("bb_recordId", id);
+        sessionStorage.setItem("bb_email", email);
       }
       onRecordId?.(id);
       router.push("/wheel");

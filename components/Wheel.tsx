@@ -5,11 +5,10 @@ import confetti from "canvas-confetti";
 import { PRIZES } from "@/prizes";
 import { updateLeadPrize } from "@/lib/airtable";
 import { PrizeModal } from "./PrizeModal";
-import { SocialShare } from "./SocialShare";
 
-const SLICE_COLORS = ["#0A84FF", "#111111", "#28C840", "#FF9500", "#FF453A"];
+const SLICE_COLORS = ["#0A84FF", "#111111", "#FFFFFF", "#FFA500", "#FF453A"];
 
-const SPIN_DURATION = 4500; // ms
+const SPIN_DURATION = 4500;
 
 type WheelProps = {
   recordId: string | null;
@@ -84,12 +83,12 @@ export function Wheel({ recordId }: WheelProps) {
     }, SPIN_DURATION + 150); // a bit more than CSS duration
   };
 
-  const radius = 160;
+  const radius = 200;
   const viewBoxSize = radius * 2;
 
   const pointer = (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-      <div className="w-0 h-0 border-l-[10px] border-r-[10px] border-b-[18px] border-l-transparent border-r-transparent border-b-accent drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)] translate-y-[-72%]" />
+      <div className="w-0 h-0 mb-6 border-l-[10px] border-r-[10px] border-b-[18px] border-l-transparent border-r-transparent border-b-red-500 drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)] translate-y-[-72%]" />
     </div>
   );
 
@@ -159,8 +158,9 @@ export function Wheel({ recordId }: WheelProps) {
                           x={textX}
                           y={textY}
                           fill={fill === "#111111" ? "#F2F2F2" : "#111111"}
-                          fontSize={12}
-                          fontWeight={600}
+                          fontSize={14}
+                          fontWeight={400}
+                          className="font-outfit"
                           textAnchor="middle"
                           alignmentBaseline="middle"
                           transform={`rotate(${midAngle}, ${textX}, ${textY})`}
@@ -178,23 +178,13 @@ export function Wheel({ recordId }: WheelProps) {
               type="button"
               onClick={spin}
               disabled={isSpinning}
-              className="relative z-10 inline-flex items-center justify-center rounded-full bg-primary px-6 py-6 text-xs sm:text-sm font-medium text-white shadow-soft hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-secondary disabled:opacity-60 transition"
+              className="relative z-10 inline-flex items-center justify-center rounded-full bg-[#00da92] px-3 py-2 text-xs text-white shadow-soft hover:bg-[#00da92]/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-secondary disabled:opacity-60 transition"
             >
               {isSpinning ? "Spinning..." : "TAP TO SPIN"}
             </button>
           </div>
         </div>
       </div>
-
-      {prize && (
-        <div className="w-full max-w-md">
-          <div className="rounded-2xl bg-accent/5 border border-accent/15 p-4">
-            <p className="text-xs text-accent/70 mb-1">Your result</p>
-            <p className="text-lg font-semibold text-white">{prize}</p>
-            <SocialShare prize={prize} />
-          </div>
-        </div>
-      )}
 
       <PrizeModal
         open={modalOpen}
